@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.js"></script>
+        <link rel="stylesheet" type="text/css" href="style.css" />
+        <title>SEGUNDO</title>
+        <meta name="description" content="Evaluación de cierre de la Unidad I: Bocetos de introducción a la programación" />
+    </head>
+    <body>
+        <nav>
+            <a href="index.html"><span class="miNombre"></span></a>
+            <a href="page-1.html">Primero</a>
+            <a href="page-2.html">Segundo</a>
+            <a href="page-3.html">Tercero</a>
+            <a href="page-4.html">Cuarto</a>
+        </nav>
+        <main></main>
+        <div>
+          
+        </div>
+        <script>
+            let rSlider, gSlider, bSlider;
+
+function setup() {
+  // crear lienzo
+  createCanvas(710, 400);
+  textSize(15);
+  noStroke();
+
+  // crear barras deslizantes
+  rSlider = createSlider(0, 255, 100);
+  rSlider.position(20, 20);
+  gSlider = createSlider(0, 255, 0);
+  gSlider.position(20, 50);
+  bSlider = createSlider(0, 255, 255);
+  bSlider.position(20, 80);
+}
+
+function draw() {
+  const r = rSlider.value();
+  const g = gSlider.value();
+  const b = bSlider.value();
+  background(r, g, b);
+  text('Red', 165, 35);
+  text('Green', 165, 65);
+  text('Blue', 165, 95);
+}
+              function windowResized() {
+                resizeCanvas(windowWidth, windowHeight);
+              }
+
+        </script>
+    </body>
+</html>
