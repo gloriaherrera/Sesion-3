@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.js"></script>
+        <link rel="stylesheet" type="text/css" href="style.css" />
+        <title>PRIMERO</title>
+        <meta name="description" content="Evaluación de cierre de la Unidad I: Bocetos de introducción a la programación" />
+    </head>
+    <body>
+        <nav>
+            <a href="index.html"><span class="miNombre"></span></a>
+            <a href="page-1.html">Primero</a>
+            <a href="page-2.html">Segundo</a>
+            <a href="page-3.html">Tercero</a>
+            <a href="page-4.html">Cuarto</a>
+        </nav>
+        <main></main>
+        <div>
+            <p id="primerP">Ajuste de <em>Hue</em></p>
+            <p id="segundoP">Ajuste de <em>Saturation</em></p>
+            <p id="tercerP">Ajuste de <em>Brightness</em></p>
+        </div>
+        <script>
+            var sliderH;
+            var sliderS;
+            var sliderB;
+            function setup() {
+                createCanvas(windowWidth, windowHeight).position(0, 0).style("z-index", -1);
+                selectAll("a")[1].addClass("aqui");
+                selectAll(".miNombre").forEach((n) => {
+                    n.html("Nombre Apellido");
+                });
+                var sliderH = select("#primerP");
+                Hslider = createSlider(0, 360, 0).parent(sliderH);
+
+                var sliderS = select("#segundoP");
+                Sslider = createSlider(0, 100, 0).parent(sliderS);
+
+                var sliderB = select("#tercerP");
+                Bslider = createSlider(0, 100, 0).parent(sliderB);
+
+                colorMode(HSB, 360, 100, 100);
+            }
+
+            function draw() {
+                background(Hslider.value(), Sslider.value(), Bslider.value());
+                fill("#dddddd");
+                textAlign(CENTER, CENTER);
+                textSize(20);
+                text("H " + Hslider.value() + "º S " + Sslider.value() + "% B " + Bslider.value() + "%", windowWidth / 2, windowHeight - 40);
+
+            }
+
+            function windowResized() {
+                resizeCanvas(windowWidth, windowHeight);
+            }
+        </script>
+    </body>
+</html>
+
+<!--
+    let rSlider, gSlider, bSlider;
+
+function setup() {
+  // crear lienzo
+  createCanvas(710, 400);
+  textSize(15);
+  noStroke();
+
+  // crear barras deslizantes
+  sliderH = createSlider(0, 360, 100);
+  sliderH.position(20, 20);
+  sliderS = createSlider(0, 100, 20);
+  sliderS.position(20, 40);
+  sliderB = createSlider(0, 100, 0);
+  sliderB.position(20, 60);
+  
+  colorMode(HSB, 360, 100, 100);
+}
+
+function draw() {
+  const h = sliderH.value();
+  const s = sliderS.value();
+  const b = sliderB.value();
+  background(h,s,b);
+
+}
+-->>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.js"></script>
+        <link rel="stylesheet" type="text/css" href="style.css" />
+        <title>CUARTO</title>
+        <meta name="description" content="Evaluación de cierre de la Unidad I: Bocetos de introducción a la programación" />
+    </head>
+    <body>
+        <nav>
+            <a href="index.html"><span class="miNombre"></span></a>
+            <a href="page-1.html">Primero</a>
+            <a href="page-2.html">Segundo</a>
+            <a href="page-3.html">Tercero</a>
+            <a href="page-4.html">Cuarto</a>
+        </nav>
+        <main></main>
+        <script>
+            var img;
+            let rad = 40;
+            let xpos, ypos; // Posición inicial de la forma
+
+            let xspeed = 2.8; // La velocidad de la forma
+            let yspeed = 2.2; // La velocidad de la forma
+
+            let xdirection = 1; // Izquierda o derecha
+            let ydirection = 1; // De arriba a abajo
+            
+            function setup() {
+                createCanvas(windowWidth, windowHeight).position(0, 0).style("z-index", -1);
+                selectAll("a")[4].addClass("aqui");
+                selectAll(".miNombre").forEach((n) => {
+                    n.html("Nombre Apellido");
+                });
+                img = loadImage("https://raw.githubusercontent.com/profesorfaco/front-2023-1/main/sesion_03/dvd.png");
+                colorMode(HSB,360,100,100,100);
+                noStroke();
+                frameRate(120);
+                rectMode(CENTER);
+                imageMode(CENTER);
+                tint(random(0,360),100,100,50);
+                fill(random(0,360),100,100,50);
+                // Establecer la posición de partida de la forma
+                xpos = width / 2;
+                ypos = height / 2;
+            }
+
+            function draw() {
+                background("#111");
+                // Actualizar la posición de la forma
+                xpos = xpos + xspeed * xdirection;
+                ypos = ypos + yspeed * ydirection;
+
+                // Prueba para ver si la forma excede los límites de la pantalla
+                // Si lo hace, invierta su dirección multiplicando por -1
+                if (xpos > width - rad || xpos < rad) {
+                    xdirection *= -1;
+                    tint(random(0,360),100,100,50);
+                    fill(random(0,360),100,100,50);
+                }
+                if (ypos > height - rad || ypos < rad) {
+                    ydirection *= -1;
+                    tint(random(0,360),100,100,50);
+                    fill(random(0,360),100,100,50);
+                }
+
+                // Dibuja la forma
+                rect(xpos, ypos, 150, 150);
+                image(img, xpos, ypos, 150, 150);
+            }
+
+            function windowResized() {
+                resizeCanvas(windowWidth, windowHeight);
+            }
+        </script>
+    </body>
+</html>
